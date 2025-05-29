@@ -20,7 +20,7 @@ mkdir -p ~/my_tools/bin
 
 # Cài đặt Ffuf
 echo "Cài đặt Ffuf..."
-go install github.com/ffuf/ffuf@latest
+go install github.com/ffuf/ffuf/v2@latest
 mv ~/go/bin/ffuf ~/my_tools/bin/
 
 # Cài đặt Subfinder
@@ -35,17 +35,17 @@ mv ~/go/bin/httpx ~/my_tools/bin/
 
 # Cài đặt Katana
 echo "Cài đặt Katana..."
-go install -v github.com/projectdiscovery/katana/cmd/katana@latest
+go install github.com/projectdiscovery/katana/cmd/katana@latestst
 mv ~/go/bin/katana ~/my_tools/bin/
 
 # Cài đặt Amass
 echo "Cài đặt Amass..."
-go install -v github.com/OWASP/Amass/v4/...@master
+go install -v github.com/owasp-amass/amass/v4/...@master
 mv ~/go/bin/amass ~/my_tools/bin/
 
 # Cài đặt Nuclei
 echo "Cài đặt Nuclei..."
-go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 mv ~/go/bin/nuclei ~/my_tools/bin/
 
 # Thêm thư mục vào PATH nếu chưa có
