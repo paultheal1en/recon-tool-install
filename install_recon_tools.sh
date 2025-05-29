@@ -14,35 +14,48 @@ fi
 echo "Cài đặt Nmap..."
 sudo apt install nmap -y
 
+# Tạo thư mục lưu trữ công cụ
+echo "Tạo thư mục lưu trữ công cụ..."
+mkdir -p ~/my_tools/bin
+
 # Cài đặt Ffuf
 echo "Cài đặt Ffuf..."
 go install github.com/ffuf/ffuf@latest
-sudo mv ~/go/bin/ffuf /usr/local/bin/
+mv ~/go/bin/ffuf ~/my_tools/bin/
 
 # Cài đặt Subfinder
 echo "Cài đặt Subfinder..."
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-sudo mv ~/go/bin/subfinder /usr/local/bin/
+mv ~/go/bin/subfinder ~/my_tools/bin/
 
 # Cài đặt Httpx
 echo "Cài đặt Httpx..."
 go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-sudo mv ~/go/bin/httpx /usr/local/bin/
+mv ~/go/bin/httpx ~/my_tools/bin/
 
 # Cài đặt Katana
 echo "Cài đặt Katana..."
 go install -v github.com/projectdiscovery/katana/cmd/katana@latest
-sudo mv ~/go/bin/katana /usr/local/bin/
+mv ~/go/bin/katana ~/my_tools/bin/
 
 # Cài đặt Amass
 echo "Cài đặt Amass..."
 go install -v github.com/OWASP/Amass/v4/...@master
-sudo mv ~/go/bin/amass /usr/local/bin/
+mv ~/go/bin/amass ~/my_tools/bin/
 
 # Cài đặt Nuclei
 echo "Cài đặt Nuclei..."
 go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
-sudo mv ~/go/bin/nuclei /usr/local/bin/
+mv ~/go/bin/nuclei ~/my_tools/bin/
+
+# Thêm thư mục vào PATH nếu chưa có
+if ! grep -q "my_tools/bin" ~/.bashrc; then
+    echo "Thêm thư mục vào PATH..."
+    echo 'export PATH="$HOME/my_tools/bin:$PATH"' >> ~/.bashrc
+fi
+
+# Áp dụng PATH mới
+source ~/.bashrc
 
 # Kiểm tra cài đặt
 echo "Kiểm tra các công cụ đã cài đặt..."
@@ -55,6 +68,3 @@ for tool in nmap ffuf subfinder httpx katana amass nuclei; do
 done
 
 echo "Hoàn tất cài đặt các công cụ recon!"
-
-echo "Tải SecLists..."
-git clone https://github.com/danielmiessler/SecLists.git
